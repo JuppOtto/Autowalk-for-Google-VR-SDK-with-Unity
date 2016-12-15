@@ -7,7 +7,7 @@
 // in the Unity Inspector. 
 // How to get started with this script?: 
 // 0. haven't the Google VR SDK yet, follow this guide https://developers.google.com/vr/unity/get-started
-// 1. Import the example package from step 0 (GoogleVRForUnity.unitypackage).
+// 1. Import the example package downloaded in step 0 (GoogleVRForUnity.unitypackage).
 // 2. Load the GVRDemo scene.
 // 3. Attach a Rigidbody to the "Player" GameObject.
 // 4. Freeze X, Y and Z Rotation of the Rgidbody in the inspector. 
