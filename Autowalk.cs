@@ -1,4 +1,4 @@
-﻿// This script moves your player automatically in the direction he is looking at. You can 
+// This script moves your player automatically in the direction he is looking at. You can 
 // activate the autowalk function by pull the cardboard trigger, by define a threshold angle 
 // or combine both by selecting both of these options.
 // The threshold is an value in degree between 0° and 90°. So for example the threshold is 
@@ -7,7 +7,7 @@
 // in the Unity Inspector. 
 // How to get started with this script?: 
 // 0. haven't the Google VR SDK yet, follow this guide https://developers.google.com/vr/unity/get-started
-// 1. Import the example package downloaded in step 0 (GoogleVRForUnity.unitypackage).
+// 1. Import the exampple package from step 0 (GoogleVRForUnity.unitypackage).
 // 2. Load the GVRDemo scene.
 // 3. Attach a Rigidbody to the "Player" GameObject.
 // 4. Freeze X, Y and Z Rotation of the Rgidbody in the inspector. 
@@ -29,7 +29,7 @@ public class Autowalk : MonoBehaviour
     // This variable determinates if the player will move or not 
     private bool isWalking = false;
 
-    Transform player = null;
+    Transform mainCamera = null;
 
     //This is the variable for the player speed
     [Tooltip("With this speed the player will move.")]
@@ -54,7 +54,7 @@ public class Autowalk : MonoBehaviour
 
     void Start()
     {
-        player = gameObject.transform;
+        mainCamera = Camera.main.transform;
     }
 
     void Update()
@@ -71,37 +71,37 @@ public class Autowalk : MonoBehaviour
 
         // Walk when player looks below the threshold angle 
         if (walkWhenLookDown && !walkWhenTriggered && !isWalking &&
-            player.transform.eulerAngles.x >= thresholdAngle &&
-            player.transform.eulerAngles.x <= RIGHT_ANGLE)
+            mainCamera.transform.eulerAngles.x >= thresholdAngle &&
+            mainCamera.transform.eulerAngles.x <= RIGHT_ANGLE)
         {
             isWalking = true;
         }
         else if (walkWhenLookDown && !walkWhenTriggered && isWalking &&
-                 (player.transform.eulerAngles.x <= thresholdAngle ||
-                 player.transform.eulerAngles.x >= RIGHT_ANGLE))
+                 (mainCamera.transform.eulerAngles.x <= thresholdAngle ||
+                 mainCamera.transform.eulerAngles.x >= RIGHT_ANGLE))
         {
             isWalking = false;
         }
 
         // Walk when the Cardboard trigger is used and the player looks down below the threshold angle
         if (walkWhenLookDown && walkWhenTriggered && !isWalking &&
-            player.transform.eulerAngles.x >= thresholdAngle &&
+            mainCamera.transform.eulerAngles.x >= thresholdAngle &&
             GvrViewer.Instance.Triggered &&
-            player.transform.eulerAngles.x <= RIGHT_ANGLE)
+            mainCamera.transform.eulerAngles.x <= RIGHT_ANGLE)
         {
             isWalking = true;
         }
         else if (walkWhenLookDown && walkWhenTriggered && isWalking &&
-                 player.transform.eulerAngles.x >= thresholdAngle &&
+                 mainCamera.transform.eulerAngles.x >= thresholdAngle &&
                  (GvrViewer.Instance.Triggered ||
-                 player.transform.eulerAngles.x >= RIGHT_ANGLE))
+                 mainCamera.transform.eulerAngles.x >= RIGHT_ANGLE))
         {
             isWalking = false;
         }
 
         if (isWalking)
         {
-            Vector3 direction = new Vector3(player.transform.forward.x, 0, player.transform.forward.z).normalized * speed * Time.deltaTime;
+            Vector3 direction = new Vector3(mainCamera.transform.forward.x, 0, mainCamera.transform.forward.z).normalized * speed * Time.deltaTime;
             Quaternion rotation = Quaternion.Euler(new Vector3(0, -transform.rotation.eulerAngles.y, 0));
             transform.Translate(rotation * direction);
         }
