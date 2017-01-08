@@ -1,5 +1,4 @@
 /*
-
 This script was developed by Jupp Otto. It's free to use and there are no restrictions in modification.
 If there are any questions you can send me an Email: juppotto3@gmail.com
 
