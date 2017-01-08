@@ -1,23 +1,29 @@
-// This script moves your player automatically in the direction he is looking at. You can 
-// activate the autowalk function by pull the cardboard trigger, by define a threshold angle 
-// or combine both by selecting both of these options.
-// The threshold is an value in degree between 0° and 90°. So for example the threshold is 
-// 30°, the player will move when he is looking 31° down to the bottom and he will not move 
-// when the player is looking 29° down to the bottom. This script can easally be configured
-// in the Unity Inspector. 
-// How to get started with this script?: 
-// 0. haven't the Google VR SDK yet, follow this guide https://developers.google.com/vr/unity/get-started
-// 1. Import the exampple package downloaded in step 0 (GoogleVRForUnity.unitypackage).
-// 2. Load the GVRDemo scene.
-// 3. Attach a Rigidbody to the "Player" GameObject.
-// 4. Freeze X, Y and Z Rotation of the Rgidbody in the inspector. 
-// 5. Attach a Capsule Collider to the "Player" GameObject.
-// 6. Attach the Autowalk script to the "Player" GameObject.
-// 7. Configure the Script in the insector for example: 
-//      - walk when triggered   = true 
-//      - speed                 = 3  
-// 8. Make sure your ground have a collider on it. (Otherwise you will fall through it)
-// 9. Start the scene and have fun! 
+/*
+
+This script was developed by Jupp Otto. It's free to use and there are no restrictions in modification.
+If there are any questions you can send me an Email: juppotto3@gmail.com
+
+This script moves your player automatically in the direction he is looking at. You can 
+activate the autowalk function by pull the cardboard trigger, by define a threshold angle 
+or combine both by selecting both of these options.
+The threshold is an value in degree between 0° and 90°. So for example the threshold is 
+30°, the player will move when he is looking 31° down to the bottom and he will not move 
+when the player is looking 29° down to the bottom. This script can easally be configured
+in the Unity Inspector. 
+How to get started with this script?: 
+0. haven't the Google VR SDK yet, follow this guide https://developers.google.com/vr/unity/get-started
+1. Import the exampple package downloaded in step 0 (GoogleVRForUnity.unitypackage).
+2. Load the GVRDemo scene.
+3. Attach a Rigidbody to the "Player" GameObject.
+4. Freeze X, Y and Z Rotation of the Rgidbody in the inspector. 
+5. Attach a Capsule Collider to the "Player" GameObject.
+6. Attach the Autowalk script to the "Player" GameObject.
+7. Configure the Script in the insector for example: 
+      - walk when triggered   = true 
+      - speed                 = 3  
+8. Make sure your ground have a collider on it. (Otherwise you will fall through it)
+9. Start the scene and have fun! 
+*/
 
 using UnityEngine;
 using System.Collections;
