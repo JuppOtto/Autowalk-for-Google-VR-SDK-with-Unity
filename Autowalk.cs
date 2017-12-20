@@ -1,7 +1,6 @@
 /*
 This script was developed by Jupp Otto. It's free to use and there are no restrictions in modification.
 If there are any questions you can send me an Email: juppotto3@gmail.com
-
 This script moves your player automatically in the direction he is looking at. You can 
 activate the autowalk function by pull the cardboard trigger, by define a threshold angle 
 or combine both by selecting both of these options.
@@ -65,11 +64,11 @@ public class Autowalk : MonoBehaviour
     void Update()
     {
         // Walk when the Cardboard Trigger is used 
-        if (walkWhenTriggered && !walkWhenLookDown && !isWalking && GvrViewer.Instance.Triggered)
+        if (walkWhenTriggered && !walkWhenLookDown && !isWalking && Input.GetButtonDown("Fire1"))
         {
             isWalking = true;
         }
-        else if (walkWhenTriggered && !walkWhenLookDown && isWalking && GvrViewer.Instance.Triggered)
+        else if (walkWhenTriggered && !walkWhenLookDown && isWalking && Input.GetButtonDown("Fire1"))
         {
             isWalking = false;
         }
@@ -91,14 +90,14 @@ public class Autowalk : MonoBehaviour
         // Walk when the Cardboard trigger is used and the player looks down below the threshold angle
         if (walkWhenLookDown && walkWhenTriggered && !isWalking &&
             mainCamera.transform.eulerAngles.x >= thresholdAngle &&
-            GvrViewer.Instance.Triggered &&
+            Input.GetButtonDown("Fire1") &&
             mainCamera.transform.eulerAngles.x <= RIGHT_ANGLE)
         {
             isWalking = true;
         }
         else if (walkWhenLookDown && walkWhenTriggered && isWalking &&
                  mainCamera.transform.eulerAngles.x >= thresholdAngle &&
-                 (GvrViewer.Instance.Triggered ||
+                 (Input.GetButtonDown("Fire1") ||
                  mainCamera.transform.eulerAngles.x >= RIGHT_ANGLE))
         {
             isWalking = false;
